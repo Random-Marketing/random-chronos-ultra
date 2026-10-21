@@ -1,0 +1,135 @@
+{
+  "pipeline": {
+    "name": "Pipeline Canônico 9 Etapas - Random Chronos Ultra",
+    "description": "Estrutura padrão de alta conversão para campanhas Click-to-WhatsApp integradas com Meta Conversions API (CAPI)",
+    "stages": [
+      {
+        "id": "novo-lead-whatsapp",
+        "name": "Novo Lead (WhatsApp)",
+        "order": 1,
+        "color": "#64748b",
+        "type": "open",
+        "probability": 10,
+        "meta_capi": {
+          "event": "Lead",
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Entrada automática de cliques em anúncios Click-to-WhatsApp (CTWA)"
+      },
+      {
+        "id": "triagem-concluida",
+        "name": "Triagem Concluída",
+        "order": 2,
+        "color": "#3b82f6",
+        "type": "open",
+        "probability": 30,
+        "meta_capi": {
+          "event": "SubmitApplication",
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Lead respondeu às perguntas de qualificação e recebeu o documento/PDF oficial"
+      },
+      {
+        "id": "audio-enviado",
+        "name": "Áudio Enviado",
+        "order": 3,
+        "color": "#8b5cf6",
+        "type": "open",
+        "probability": 50,
+        "meta_capi": {
+          "event": "Contact",
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Vendedor ou especialista enviou áudio personalizado chamando o lead pelo nome"
+      },
+      {
+        "id": "vaga-pre-reservada",
+        "name": "Vaga Pré-Reservada (PIX)",
+        "order": 4,
+        "color": "#14b8a6",
+        "type": "open",
+        "probability": 75,
+        "meta_capi": {
+          "event": "Schedule",
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Lead solicitou dados para pagamento do sinal / entrada"
+      },
+      {
+        "id": "atendimento-especial",
+        "name": "Atendimento Especial",
+        "order": 5,
+        "color": "#f97316",
+        "type": "open",
+        "probability": 25,
+        "meta_capi": {
+          "event": "Contact",
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Dúvidas fora do escopo do funil (outras datas, viagens personalizadas, parcerias)"
+      },
+      {
+        "id": "follow-up-urgencia",
+        "name": "Follow-up (Urgência)",
+        "order": 6,
+        "color": "#eab308",
+        "type": "open",
+        "probability": 20,
+        "meta_capi": {
+          "event": null,
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Leads resgatados pelo timeout de 24h ou sem resposta há mais de 48h"
+      },
+      {
+        "id": "vaga-confirmada-ganho",
+        "name": "Vaga Confirmada (Ganho)",
+        "order": 7,
+        "color": "#22c55e",
+        "type": "won",
+        "probability": 100,
+        "meta_capi": {
+          "event": "Purchase",
+          "value_type": "fixed",
+          "default_value": 6900.0,
+          "currency": "BRL"
+        },
+        "description": "Pagamento confirmado. Dispara Purchase com valor monetário real na Meta CAPI"
+      },
+      {
+        "id": "perdido-desistencia",
+        "name": "Perdido / Desistência",
+        "order": 8,
+        "color": "#ef4444",
+        "type": "lost",
+        "probability": 0,
+        "meta_capi": {
+          "event": null,
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Lead explicitamente sem interesse ou sem perfil financeiro"
+      },
+      {
+        "id": "lead-falso",
+        "name": "Lead falso",
+        "order": 9,
+        "color": "#94a3b8",
+        "type": "lost",
+        "probability": 0,
+        "meta_capi": {
+          "event": "FakeLead_Chronos",
+          "value": null,
+          "currency": "BRL"
+        },
+        "description": "Números inválidos, spam, golpes ou bots"
+      }
+    ]
+  }
+}
